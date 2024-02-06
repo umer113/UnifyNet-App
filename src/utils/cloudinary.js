@@ -1,4 +1,4 @@
-import {v2 as cloudinary} from cloudinary;
+import {v2 as cloudinary} from "cloudinary";
 import fs from "fs";  
 
 // fs = fileSystem 
@@ -22,9 +22,12 @@ const uploadCloudinary =async(localFilePath)=>{
     })
 
     // file has been uploaded successfully
-    console.log("File is uploaded on cloudinary",response.url)
+    // console.log("File is uploaded on cloudinary",response.url)
+    fs.unlinkSync(localFilePath)
 
+    console.log("Cloudinary Response:",response)
     return response 
+
   }catch(error){
     fs.unlinkSync(localFilePath) // remove the locally saved temprory file as the operation of uploading got failed
   }
